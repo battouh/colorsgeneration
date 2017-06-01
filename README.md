@@ -10,6 +10,12 @@ Go to main.py and change the R, G and B value of the variable TestColor
 TestColor = Color([43,84,115],"","")
 ```
 
+Go to your console
+
+```
+python3 main.py
+```
+
 ## Installation
 
 Use Python 3.4 +
