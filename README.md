@@ -1,3 +1,5 @@
+# Color Generation
+
 ## Synopsis
 
 Generate variations of a color and do some statistics and math
