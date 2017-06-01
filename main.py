@@ -22,11 +22,10 @@ HsvDict = HsvVariation(TestColor,30)
 HlsDict = HslVariation(TestColor,30)
 
 # Create an image with all color variations
-'''
 ImageGeneration(RgbDict,"RGB")
 ImageGeneration(HsvDict,"HSV")
 ImageGeneration(HlsDict,"HLS")
-'''
+
 # Calculate the Euclidean difference between the color reference and the color variations
 RgbDifference = ListComparator(TestColor,RgbDict)
 HsvDifference = ListComparator(TestColor,HsvDict)
