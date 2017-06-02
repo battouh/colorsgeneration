@@ -20,13 +20,10 @@ python3 main.py
 
 ## Installation
 
-Use Python 3.4 +
+Pillow and PIL cannot co-exist in the same environment. Before installing Pillow, please uninstall PIL.
 
 ```
-pip install terminaltables
-pip uninstall PIL (if you already have PIL installed)
-pip install Pillow
-pip install matplotlib
+pip install -r requirements.txt
 ```
 
 
