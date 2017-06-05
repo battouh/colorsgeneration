@@ -1,6 +1,7 @@
 from PIL import Image
 import matplotlib.pyplot as plt
 
+# Create, Save and Show an image with all variations of color
 def ImageGeneration(Dict,Name):
 	im = Image.new("RGB",(len(Dict)*10,len(Dict)*10))
 	pix = im.load()
@@ -11,6 +12,7 @@ def ImageGeneration(Dict,Name):
 	im.save(Name + ".png","PNG")
 	im.show()
 
+# Generate a graph with in abscissa axis the Euclidean Difference to Black and in ordinate axis the Euclidean Difference to White
 def GraphGeneration(List,Name):
 	x = []
 	y = []

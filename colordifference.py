@@ -2,7 +2,7 @@ from colorvariation import Color
 from math import sqrt
 import statistics
 
-# Calculate Euclidean Difference between two colors
+# Return Euclidean Difference between two colors
 def EuclideanDifference(InputA, InputB):
 	DeltaColorR = InputA.RGB[0] - InputB.RGB[0]
 	DeltaColorG = InputA.RGB[1] - InputB.RGB[1]
@@ -10,7 +10,7 @@ def EuclideanDifference(InputA, InputB):
 	DeltaColor = sqrt(2 * (DeltaColorR ** 2) + 4 * (DeltaColorG ** 2) + 3 * (DeltaColorB **2))
 	return DeltaColor
 
-# Calculate Euclidean Difference between one Color control and a dictionnary of colors
+# Return a table of the Euclidean Difference between one Color control and a dictionnary of colors
 def ListComparator(Control,Dict):
 	result = []
 	for key in Dict:
@@ -18,7 +18,7 @@ def ListComparator(Control,Dict):
 		result.append(DeltaColor)
 	return result
 
-# Calculate Euclidean Difference between Black color, White color and a dictionnary of colors
+# Return a table of the Euclidean Difference between Black color, White color and a dictionnary of colors
 def BlackWhiteComparator(Dict):
 	result = []
 	Black = Color([0,0,0],"","")
@@ -29,6 +29,7 @@ def BlackWhiteComparator(Dict):
 		result.append([DeltaBlack,DeltaWhite])
 	return result
 
+# Return a table of 4 elements. 1st is the name of the colorspace, 2nd the average, 3rd the standard deviation, 4th the variance
 def ResultStatistics(ColorSpace,List):
 	result = [ColorSpace,"","",""]
 	result[1] = round(statistics.mean(List),2)

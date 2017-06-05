@@ -1,12 +1,20 @@
 import random
 import colorsys
 
+
+# Color is a class with 3 variables, one per color space.
+# Each Color Space is represented as a table with 3 elements.
+# For RGB, 1st element is R, 2nd element is G, 3rd element is B.
+# For HLS, 1st element is H, 2nd element is L, 3rd element is S.
+# For HSV, 1st element is H, 2nd element is S, 3rd element is V.
 class Color:
 	def __init__(self,RGB,HLS,HSV):
 		self.RGB = RGB
 		self.HLS = HLS
 		self.HSV = HSV
 
+# From a RGB triplet, we generate variations of a color by applying an offset.
+# The output is a dictionnary of variations.
 def RgbVariation(ColorInput):
 	ColorVariation = {}
 	z = 0
@@ -19,6 +27,8 @@ def RgbVariation(ColorInput):
 		z += 1
 	return ColorVariation
 
+# From a HSV triplet, we vary H between H +/- a tolerance and we apply an offset on S and V. 
+# The output is a dictionnary of variations.
 def HsvVariation(ColorInput,Tolerance):
 	ColorVariation = {}
 	z = 0
@@ -36,7 +46,9 @@ def HsvVariation(ColorInput,Tolerance):
 			z+=1
 	return ColorVariation
 
-def HslVariation(ColorInput,Tolerance):
+# From a HLS triplet, we vary H between H +/- a tolerance and we apply an offset on S and V. 
+# The output is a dictionnary of variations.
+def HlsVariation(ColorInput,Tolerance):
 	ColorVariation = {}
 	z = 0
 	startingH = round(ColorInput.HLS[0] * 360) - Tolerance

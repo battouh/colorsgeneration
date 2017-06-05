@@ -1,5 +1,5 @@
 import colorsys
-from colorvariation import Color, RgbVariation, HsvVariation, HslVariation
+from colorvariation import Color, RgbVariation, HsvVariation, HlsVariation
 from renderer import ImageGeneration, GraphGeneration
 from colordifference import ListComparator, BlackWhiteComparator, ResultStatistics
 from terminaltables import AsciiTable
@@ -19,7 +19,7 @@ RgbDict = RgbVariation(TestColor)
 HsvDict = HsvVariation(TestColor,30)
 
 # Generate Color variations using the HLS Color space with 30° tolerance on H
-HlsDict = HslVariation(TestColor,30)
+HlsDict = HlsVariation(TestColor,30)
 
 # Create an image with all color variations
 ImageGeneration(RgbDict,"RGB")
