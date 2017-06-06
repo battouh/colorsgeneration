@@ -4,15 +4,25 @@ from colordifference import EuclideanDifference, ListComparator, BlackWhiteCompa
 
 class ColorDifference(unittest.TestCase):
 
+    def test_EuclideanDifference_Generic(self):
+        ColorA = Color([43,84,115],"","")
+        ColorB = Color([15,100,270],"","")
+        self.assertEqual(EuclideanDifference(ColorA,ColorB), 273.25263036245417)
+
     def test_EuclideanDifference_SameColors(self):
         ColorA = Color([43,84,115],"","")
         ColorB = Color([43,84,115],"","")
         self.assertEqual(EuclideanDifference(ColorA,ColorB), 0)
 
-    def test_EuclideanDifference_Generic(self):
+    def test_EuclideanDifference_NullColor(self):
         ColorA = Color([43,84,115],"","")
-        ColorB = Color([15,100,270],"","")
-        self.assertEqual(EuclideanDifference(ColorA,ColorB), 273.25263036245417)
+        ColorB = Color([0,0,0],"","")
+        self.assertEqual(EuclideanDifference(ColorA,ColorB), 267.5761573832766)
+
+    def test_EuclideanDifference_NegativeValue(self):
+        ColorA = Color([43,84,115],"","")
+        ColorB = Color([-15,-100,200],"","")
+        self.assertEqual(EuclideanDifference(ColorA,ColorB), 404.7554817417548)
 
     def test_ListComparator(self):
         ColorReference = Color([43,84,115],"","")
