@@ -11,21 +11,21 @@ def EuclideanDifference(InputA, InputB):
 	return DeltaColor
 
 # Return a table of the Euclidean Difference between one Color control and a dictionnary of colors
-def ListComparator(Control,Dict):
+def ListComparator(Control,List):
 	result = []
-	for key in Dict:
-		DeltaColor = EuclideanDifference(Control,Dict[key])
+	for i in List:
+		DeltaColor = EuclideanDifference(Control,i)
 		result.append(DeltaColor)
 	return result
 
 # Return a table of the Euclidean Difference between Black color, White color and a dictionnary of colors
-def BlackWhiteComparator(Dict):
+def BlackWhiteComparator(List):
 	result = []
 	Black = Color([0,0,0],"","")
 	White = Color([255,255,255],"","")
-	for key in Dict:
-		DeltaBlack = round(EuclideanDifference(Black,Dict[key]))
-		DeltaWhite = round(EuclideanDifference(White,Dict[key]))
+	for i in List:
+		DeltaBlack = round(EuclideanDifference(Black,i))
+		DeltaWhite = round(EuclideanDifference(White,i))
 		result.append([DeltaBlack,DeltaWhite])
 	return result
 
@@ -37,4 +37,13 @@ def ResultStatistics(ColorSpace,List):
 	result[3] = round(statistics.variance(List),2)
 	return result
 
-
+# Eliminate repetetive, similar colors and outlier colors
+def ColorCleaning(ColorList,DifferenceList,MinTolerance,MaxTolerance):
+	UpdatedColorList = []
+	for diff in DifferenceList:
+		if (diff >= MinTolerance) and (diff <= MaxTolerance):
+			position = DifferenceList.index(diff)
+			UpdatedColorList.append(ColorList[position])
+	UpdatedColorList = set(UpdatedColorList)
+	UpdatedColorList = list(UpdatedColorList)
+	return UpdatedColorList
