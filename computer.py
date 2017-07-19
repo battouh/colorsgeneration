@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import colorsys
 from colorvariation import Color, RgbVariation, HsvVariation, HlsVariation
 from renderer import ImageGeneration

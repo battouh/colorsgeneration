@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from PIL import Image
 from colorvariation import Color, NormalizeRgb
 
