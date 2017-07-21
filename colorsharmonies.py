@@ -31,3 +31,22 @@ def triadicColor(ColorInput):
 	ColorOutput2.RGB = list(map(lambda x: round(x * 255),colorsys.hls_to_rgb(ColorOutput2.HLS[0],ColorOutput2.HLS[1],ColorOutput2.HLS[2])))
 
 	return [ColorOutput1.RGB,ColorOutput2.RGB]
+
+def splitComplementaryColor(ColorInput):
+
+	# Convert RGB (base 256) to HLS (between 0 and 1 )
+	ColorInput.HLS = list(colorsys.rgb_to_hls(ColorInput.RGB[0] / 255, ColorInput.RGB[1] / 255, ColorInput.RGB[2] / 255))
+
+	# Find the first triadic Hue
+	FirstSplitComplementaryHue = ((ColorInput.HLS[0] * 360 + 150) % 360) / 360
+
+	# Find the second triadic Hue
+	SecondSplitComplementaryHue = ((ColorInput.HLS[0] * 360 + 210) % 360) / 360
+
+	ColorOutput1 = Color("",[FirstSplitComplementaryHue,ColorInput.HLS[1],ColorInput.HLS[2]],"")
+	ColorOutput2 = Color("",[SecondSplitComplementaryHue,ColorInput.HLS[1],ColorInput.HLS[2]],"")
+
+	ColorOutput1.RGB = list(map(lambda x: round(x * 255),colorsys.hls_to_rgb(ColorOutput1.HLS[0],ColorOutput1.HLS[1],ColorOutput1.HLS[2])))
+	ColorOutput2.RGB = list(map(lambda x: round(x * 255),colorsys.hls_to_rgb(ColorOutput2.HLS[0],ColorOutput2.HLS[1],ColorOutput2.HLS[2])))
+
+	return [ColorOutput1.RGB,ColorOutput2.RGB]
