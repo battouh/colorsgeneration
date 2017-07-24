@@ -3,9 +3,8 @@ import unittest
 from colorvariation import Color
 from colorsharmonies import complementaryColor, triadicColor, splitComplementaryColor, tetradicColor
 
-# Obtain the complementary color of a color
-
 class colorsHarmonies(unittest.TestCase):
+	# Obtain the complementary color of a color
 	def test_complementaryColor(self):
 		MagentaColor = Color([255,0,255],"","")
 		YellowColor = Color([255,255,0],"","")
@@ -16,6 +15,7 @@ class colorsHarmonies(unittest.TestCase):
 		self.assertEqual(complementaryColor(CyanColor),[255,0,0])
 		self.assertEqual(complementaryColor(PurpleColor),[203,255,170])
 
+	# Obtain the triadic colors of a color
 	def test_triadicColor(self):
 		MagentaColor = Color([255,0,255],"","")
 		YellowColor = Color([255,255,0],"","")
@@ -30,6 +30,7 @@ class colorsHarmonies(unittest.TestCase):
 		self.assertEqual(sorted(triadicColor(GreenColor)),sorted([[230,66,176],[66,176,230]]))
 		self.assertEqual(sorted(triadicColor(WhiteColor)),sorted([[255,255,255],[255,255,255]]))
 
+	# Obtain the split complementary colors of a color
 	def test_splitComplementaryColor(self):
 		MagentaColor = Color([255,0,255],"","")
 		YellowColor = Color([255,255,0],"","")
@@ -44,6 +45,7 @@ class colorsHarmonies(unittest.TestCase):
 		self.assertEqual(sorted(splitComplementaryColor(GreenColor)),sorted([[66,94,230],[202,66,230]]))
 		self.assertEqual(sorted(splitComplementaryColor(WhiteColor)),sorted([[255,255,255],[255,255,255]]))
 
+	# Obtain the tetradic colors of a color
 	def test_tetradicColor(self):
 		MagentaColor = Color([255,0,255],"","")
 		YellowColor = Color([255,255,0],"","")
