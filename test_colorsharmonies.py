@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 from colorvariation import Color
-from colorsharmonies import complementaryColor, triadicColor, splitComplementaryColor, tetradicColor
+from colorsharmonies import complementaryColor, triadicColor, splitComplementaryColor, tetradicColor, analogousColor
 
 class colorsHarmonies(unittest.TestCase):
 	# Obtain the complementary color of a color
@@ -59,6 +59,21 @@ class colorsHarmonies(unittest.TestCase):
 		self.assertEqual(sorted(tetradicColor(PurpleColor)),sorted([[203,255,170],[170,255,222],[255,170,203]]))
 		self.assertEqual(sorted(tetradicColor(GreenColor)),sorted([[120,66,230],[230,66,176],[66,230,120]]))
 		self.assertEqual(sorted(tetradicColor(WhiteColor)),sorted([[255,255,255],[255,255,255],[255,255,255]]))
+
+	# Obtain the analagous colors of a color
+	def test_analogousColor(self):
+		MagentaColor = Color([255,0,255],"","")
+		YellowColor = Color([255,255,0],"","")
+		CyanColor = Color([0,255,255],"","")
+		PurpleColor = Color([222,170,255],"","")
+		GreenColor = Color([176,230,66],"","")
+		WhiteColor = Color([255,255,255],"","")
+		self.assertEqual(sorted(analogousColor(MagentaColor)),sorted([[255,0,128],[127,0,255]]))
+		self.assertEqual(sorted(analogousColor(YellowColor)),sorted([[128,255,0],[255,128,0]]))
+		self.assertEqual(sorted(analogousColor(CyanColor)),sorted([[0,127,255],[0,255,128]]))
+		self.assertEqual(sorted(analogousColor(PurpleColor)),sorted([[255,170,245],[180,170,255]]))
+		self.assertEqual(sorted(analogousColor(GreenColor)),sorted([[94,230,66],[230,202,66]]))
+		self.assertEqual(sorted(analogousColor(WhiteColor)),sorted([[255,255,255],[255,255,255]]))
 
 if __name__ == '__main__':
     unittest.main()
