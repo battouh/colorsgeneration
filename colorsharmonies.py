@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import colorsys
-from colorvariation import Color
+from colorvariation import Color, Normalize
 
 def complementaryColor(ColorInput):
 	# Convert RGB (base 256) to HLS (between 0 and 1 )
@@ -92,3 +92,19 @@ def analogousColor(ColorInput):
 	ColorOutput2.RGB = list(map(lambda x: round(x * 255),colorsys.hls_to_rgb(ColorOutput2.HLS[0],ColorOutput2.HLS[1],ColorOutput2.HLS[2])))
 
 	return [ColorOutput1.RGB,ColorOutput2.RGB]
+
+def monochromaticColor(ColorInput):
+	# Convert RGB (base 256) to HSV (between 0 and 1)
+	ColorInput.HSV = list(colorsys.rgb_to_hsv(ColorInput.RGB[0] / 255, ColorInput.RGB[1] / 255, ColorInput.RGB[2] / 255))
+
+	# Generate 10 monochromatic colors with a step of 5%
+	increment = [0,0.05,0.10]
+	result = []
+	output = []
+	for x in increment:
+		for y in increment:
+			result.append(list(map(lambda x: Normalize(round(x * 255),0,255), colorsys.hsv_to_rgb(ColorInput.HSV[0],Normalize(ColorInput.HSV[1],0,100) + x,Normalize(ColorInput.HSV[2] + y,0,100)))))
+			result.append(list(map(lambda x: Normalize(round(x * 255),0,255), colorsys.hsv_to_rgb(ColorInput.HSV[0],Normalize(ColorInput.HSV[1],0,100) - x,Normalize(ColorInput.HSV[2] - y,0,100)))))
+	[output.append(x) for x in result if x not in output]
+	return output
+

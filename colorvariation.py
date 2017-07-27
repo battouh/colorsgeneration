@@ -14,12 +14,12 @@ class Color:
 		self.HLS = HLS
 		self.HSV = HSV
 
-def NormalizeRgb(Value):
+def Normalize(Value,Min,Max):
 	Output = Value
-	if Value > 255:
-		Output = 255
-	elif Value < 0:
-		Output = 0
+	if Value > Max:
+		Output = Max
+	elif Value < Min:
+		Output = Min
 	return Output
 
 # From a RGB triplet, we generate variations of a color by applying an offset.
@@ -30,7 +30,7 @@ def RgbVariation(ColorInput):
 		TupleAverage = (ColorInput.RGB[0] + ColorInput.RGB[1] + ColorInput.RGB[2])/3
 		OffsetVariation = TupleAverage + 2 * random.random() * i - i
 		Ratio = OffsetVariation / TupleAverage
-		RGB = [NormalizeRgb(round(ColorInput.RGB[0] * Ratio)),NormalizeRgb(round(ColorInput.RGB[1] * Ratio)),NormalizeRgb(round(ColorInput.RGB[2] * Ratio))]
+		RGB = [Normalize(round(ColorInput.RGB[0] * Ratio),0,255),Normalize(round(ColorInput.RGB[1] * Ratio),0,255),Normalize(round(ColorInput.RGB[2] * Ratio),0,255)]
 		ColorVariation.append(Color(RGB,"",""))
 	return ColorVariation
 
@@ -49,7 +49,7 @@ def HsvVariation(ColorInput,Tolerance):
 			HSV = [j, ColorInput.HSV[1] * Ratio * 100, ColorInput.HSV[2] * Ratio * 100]
 			ColorVariation.append(Color("","",HSV))
 			ColorVariation[z].RGB = list(colorsys.hsv_to_rgb(ColorVariation[z].HSV[0] / 360, ColorVariation[z].HSV[1] / 100, ColorVariation[z].HSV[2] / 100))
-			ColorVariation[z].RGB = list(map(lambda v: NormalizeRgb(round(v*255)),ColorVariation[z].RGB))
+			ColorVariation[z].RGB = list(map(lambda v: Normalize(round(v*255)),ColorVariation[z].RGB),0,255)
 			z+=1
 	return ColorVariation
 
@@ -68,7 +68,7 @@ def HlsVariation(ColorInput,Tolerance):
 			HLS = [j, ColorInput.HLS[1] * Ratio * 100, ColorInput.HLS[2] * Ratio * 100]
 			ColorVariation.append(Color("",HLS,""))
 			ColorVariation[z].RGB = list(colorsys.hls_to_rgb(ColorVariation[z].HLS[0] / 360 , ColorVariation[z].HLS[1] / 100, ColorVariation[z].HLS[2] / 100))
-			ColorVariation[z].RGB = list(map(lambda v: NormalizeRgb(round(v*255)),ColorVariation[z].RGB))
+			ColorVariation[z].RGB = list(map(lambda v: Normalize(round(v*255)),ColorVariation[z].RGB),0,255)
 			z+=1
 	return ColorVariation
 
