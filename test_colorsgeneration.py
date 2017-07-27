@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
-from colorvariation import Color, NormalizeRgb
+from colorvariation import Color, Normalize
 from colordifference import EuclideanDifference, ListComparator, BlackWhiteComparator, ResultStatistics, ColorCleaning
 from renderer import RgbToHexConverter
 
@@ -61,15 +61,15 @@ class ColorDifference(unittest.TestCase):
         self.assertEqual(RgbToHexConverter(ColorA),"#0F64FF")
         self.assertEqual(RgbToHexConverter(ColorB),"#0000FF")
 
-    def test_NormalizeRgb(self):
+    def test_Normalize(self):
         # If the value is lower than 0, return 0
         # If the value is greater than 255, return 255
         # If the value is between 0 and 255, return the value
-        self.assertEqual(NormalizeRgb(-5),0)
-        self.assertEqual(NormalizeRgb(0),0)
-        self.assertEqual(NormalizeRgb(5),5)
-        self.assertEqual(NormalizeRgb(255),255)
-        self.assertEqual(NormalizeRgb(270),255)
+        self.assertEqual(Normalize(-5,0,255),0)
+        self.assertEqual(Normalize(0,0,255),0)
+        self.assertEqual(Normalize(5,0,255),5)
+        self.assertEqual(Normalize(255,0,255),255)
+        self.assertEqual(Normalize(270,0,255),255)
 
 
 if __name__ == '__main__':

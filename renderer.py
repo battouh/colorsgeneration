@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from PIL import Image
-from colorvariation import Color, NormalizeRgb
+from colorvariation import Color, Normalize
 
 # Create, Save and Show an image with all variations of color
 def ImageGeneration(List,Name):
@@ -14,9 +14,9 @@ def ImageGeneration(List,Name):
 
 # Convert RGB to Hex and return a string containing the hex value with the #
 def RgbToHexConverter(ColorInput):
-	R = NormalizeRgb(ColorInput.RGB[0])
-	G = NormalizeRgb(ColorInput.RGB[1])
-	B = NormalizeRgb(ColorInput.RGB[2])
+	R = Normalize(ColorInput.RGB[0],0,255)
+	G = Normalize(ColorInput.RGB[1],0,255)
+	B = Normalize(ColorInput.RGB[2],0,255)
 	
 	RHex = hex(R).replace("0x","").upper()
 	GHex = hex(G).replace("0x","").upper()
